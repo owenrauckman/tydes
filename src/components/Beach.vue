@@ -1,19 +1,35 @@
 <template>
-  <div class="beach">
+  <!-- <div>{{windowHeight}}</div> -->
+  <div class="beach" :style="{height: `${windowHeight - (8*16)}px`}">
     <div class="sand"></div>
   </div>
 </template>
+<script>
+export default {
+  mounted() {
+    // vh doesn't work in safari how we need it to, so we use JS instad
+    window.addEventListener('resize', () => {
+      this.windowHeight = window.innerHeight;
+    });
+  },
+  data() {
+    return {
+      windowHeight: window.innerHeight,
+    };
+  },
+};
+</script>
 <style lang="scss">
   .beach{
-    background: red;
-    height: calc(100vh - 8rem); // height of Navi (4rem) + even bottom padding (4rem)
+    // height: 100%;
+    // height: calc(100vh - 8rem); // height of Navi (4rem) + even bottom padding (4rem)
     margin: $spacing-xl auto;
     width: calc(100% - 4rem); // padding in left/right
     max-width: 400px;
     background-image: linear-gradient(to bottom right, $baby-powder , $maximum-blue-green);
     border-radius: $default-radius;
     position: relative;
-    overflow-x: hidden;
+    overflow: hidden;
   }
 
   // sand

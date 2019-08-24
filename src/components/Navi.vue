@@ -12,9 +12,11 @@
     position: fixed;
     width: 100%;
     bottom: 0;
+    left: 0;
     display: flex;
     justify-content: center;
     line-height: $line-height-default;
+    z-index: +1;
     @include breakpoint('small'){
       position: relative;
     }
