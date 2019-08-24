@@ -8,6 +8,7 @@
     background: red;
     height: calc(100vh - 8rem); // height of Navi (4rem) + even bottom padding (4rem)
     margin: $spacing-xl auto;
+    width: calc(100% - 4rem); // padding in left/right
     max-width: 400px;
     background-image: linear-gradient(to bottom right, $baby-powder , $maximum-blue-green);
     border-radius: $default-radius;
