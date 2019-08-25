@@ -1,3 +1,6 @@
+*{
+  font-family: $font-roboto;
+}
 body{
   margin: 0 auto;
   font-size: 16px;
@@ -7,4 +10,10 @@ html, body{
   height: 100%;
   margin: 0 auto;
   overflow: hidden;
+}
+
+button{
+  &:hover{
+    cursor: pointer;
+  }
 }

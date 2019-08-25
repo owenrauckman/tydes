@@ -1,10 +1,14 @@
 <template>
-  <!-- <div>{{windowHeight}}</div> -->
   <div class="beach" :style="{height: `${windowHeight - (8*16)}px`}">
-    <div class="sand"></div>
+    <div class="water" :style="{height: `calc(${tideHeight}% + 100px)`}"></div>
+    <BeachInfo :tideHeight="tideHeight"/>
+    <BeachBoard/>
   </div>
 </template>
 <script>
+import BeachBoard from '@/components/BeachBoard.vue';
+import BeachInfo from '@/components/BeachInfo.vue';
+
 export default {
   mounted() {
     // vh doesn't work in safari how we need it to, so we use JS instad
@@ -15,42 +19,52 @@ export default {
   data() {
     return {
       windowHeight: window.innerHeight,
+      // todo: this should be between 0-75 for the UI, make formula to convert 100% to 75 max
+      tideHeight: 70, // this + height of the :after svg makes the tide
     };
+  },
+  components: {
+    BeachBoard,
+    BeachInfo,
   },
 };
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
   .beach{
-    // height: 100%;
-    // height: calc(100vh - 8rem); // height of Navi (4rem) + even bottom padding (4rem)
     margin: $spacing-xl auto;
     width: calc(100% - 4rem); // padding in left/right
     max-width: 400px;
-    background-image: linear-gradient(to bottom right, $baby-powder , $maximum-blue-green);
+    background: $color-old-lace;
     border-radius: $default-radius;
     position: relative;
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
   }
 
-  // sand
-
-.sand {
-  background: url('../assets/beach.svg') repeat-x;
-  position: absolute;
-  width: 6400px;
-  animation: wave 7s cubic-bezier( 0.36, 0.45, 0.63, 0.53) infinite;
-  transform: translate3d(0, 0, 0);
-  // height: 199px;
-  height: 100px;
-  bottom: 0;
-}
-
-@keyframes wave {
-  0% {
-    margin-left: 0;
+  // water
+  .water{
+    background:linear-gradient(to bottom right, $color-baby-powder,$color-maximum-blue-green);
+    position: relative;
+    &:after{
+      content: '';
+      background: url('../assets/beach.svg') repeat-x;
+      position: absolute;
+      height: 100px;
+      width: 6400px;
+      bottom: 0;
+      animation: wave 12s cubic-bezier( 0.36, 0.45, 0.63, 0.53) infinite;
+      transform: translate3d(0, 0, 0);
+    }
   }
-  100% {
-    margin-left: -1600px;
+
+  @keyframes wave {
+    0% {
+      margin-left: 0;
+    }
+    100% {
+      margin-left: -1600px;
+    }
   }
-}
 </style>
