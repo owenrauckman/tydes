@@ -23,5 +23,12 @@ export default {
         background: transparentize($color-white, 0);
       }
     }
+    &--beach-board-active{
+      background: transparentize($color-turquoise-surf, .90);
+      color: $color-turquoise-surf;
+      &:hover{
+        background: transparentize($color-turquoise-surf, 0.75);
+      }
+    }
   }
 </style>

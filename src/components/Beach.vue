@@ -1,7 +1,7 @@
 <template>
   <div class="beach" :style="{height: `${windowHeight - (8*16)}px`}">
-    <div class="water" :style="{height: `calc(${tideHeight}% + 100px)`}"></div>
-    <BeachInfo :tideHeight="tideHeight"/>
+    <div class="water" :style="{height: `calc(${beachData.percent}% + 100px)`}"></div>
+    <BeachInfo :beachData="beachData"/>
     <BeachBoard/>
   </div>
 </template>
@@ -10,6 +10,7 @@ import BeachBoard from '@/components/BeachBoard.vue';
 import BeachInfo from '@/components/BeachInfo.vue';
 
 export default {
+  props: ['beachData'],
   mounted() {
     // vh doesn't work in safari how we need it to, so we use JS instad
     window.addEventListener('resize', () => {
@@ -31,7 +32,7 @@ export default {
 </script>
 <style lang="scss" scoped>
   .beach{
-    margin: $spacing-xl auto;
+    margin: $spacing-xl;
     width: calc(100% - 4rem); // padding in left/right
     max-width: 400px;
     background: $color-old-lace;
@@ -41,6 +42,8 @@ export default {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    flex: none;
+    scroll-snap-align: center; // needed
   }
 
   // water

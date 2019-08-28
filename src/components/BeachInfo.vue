@@ -7,9 +7,9 @@
       <div class="info-filter-item">Year</div>
     </div>
     <div class="progress">
-      <span class="progress--name">Exercise</span>
+      <span class="progress--name">{{beachData.name}}</span>
       <div>
-        <span class="progress--height">{{tideHeight}}</span>
+        <span class="progress--height">{{beachData.percent}}</span>
         <span class="progress--small">%</span>
       </div>
     </div>
@@ -17,7 +17,7 @@
 </template>
 <script>
 export default {
-  props: ['tideHeight'],
+  props: ['beachData'],
 };
 </script>
 <style lang="scss" scoped>
