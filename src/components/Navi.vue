@@ -31,7 +31,7 @@
       padding:$spacing-lg $spacing-xl;
       position: relative;
       svg{
-        height: 2rem;
+        height: 1.5rem;
       }
       &--active{
         &:before{
